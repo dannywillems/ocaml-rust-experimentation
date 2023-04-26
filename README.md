@@ -5,7 +5,26 @@
 ```
 opam switch create ./ 4.14.0
 opam install ocamlformat.0.24.1 merlin core core_bench core_unix
-dune exec ./src/bench.exe
+```
+
+### Bench
+
+```
+dune exec ./src/bench.exe -- -q 2
+```
+
+Output example (lscpu -> 13th Gen Intel(R) Core(TM) i9-13900K)
+
+```
+Estimated testing time 6s (3 benchmarks x 2s). Change using '-quota'.
+┌─────────────────────────┬──────────┬────────────┐
+│ Name                    │ Time/Run │ Percentage │
+├─────────────────────────┼──────────┼────────────┤
+│ Bench Rust unit         │  13.72ns │     40.69% │
+│ Bench C unit            │   4.69ns │     13.92% │
+│ Bench Rust add integers │  33.73ns │    100.00% │
+└─────────────────────────┴──────────┴────────────┘
+
 ```
 
 ### See generated code
