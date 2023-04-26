@@ -1,2 +1,2 @@
 [workspace]
-members = ["src/stubs"]
+members = ["src/stubs_rust"]

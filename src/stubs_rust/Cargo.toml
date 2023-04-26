@@ -1,5 +1,5 @@
 [package]
-name = "stubs"
+name = "stubs_rust"
 version = "0.1.0"
 authors = ["Danny Willems <be.danny.willems@gmail.com>"]
 edition = "2021"

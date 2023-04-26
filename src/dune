@@ -1,29 +1,37 @@
 (rule
  (deps
-  (source_tree libstubs))
- (targets libstubs.a dllstubs.so)
+  (source_tree stubs_rust))
+ (targets libstubs_rust.a dllstubs_rust.so)
  (action
   (no-infer
    (progn
     ;; This will disappear in the future as it would be moved to a different
     ;; OPAM package with vendored libraries
     (run cargo build --release --target-dir %{project_root}/target)
-    (run cp %{project_root}/target/release/libstubs.a libstubs.a)
+    (run cp %{project_root}/target/release/libstubs_rust.a libstubs_rust.a)
     (with-accepted-exit-codes
      (or 0 1)
-     (run cp %{project_root}/target/release/libstubs.so dllstubs.so))
+     (run cp %{project_root}/target/release/libstubs_rust.so dllstubs_rust.so))
     (with-accepted-exit-codes
      (or 0 1)
-     (run cp %{project_root}/target/release/libstubs.dylib dllstubs.so))))))
+     (run cp %{project_root}/target/release/libstubs_rust.dylib dllstubs_rust.so))))))
 
 (library
- (name stubs)
- (foreign_archives stubs)
- (modules stubs)
+ (name stubs_rust)
+ (foreign_archives stubs_rust)
+ (modules stubs_rust)
  (c_library_flags
-  (:standard -lpthread -lc -lm)))
+  (:standard -lpthread)))
+
+(library
+ (name stubs_c)
+ (foreign_stubs
+  (language c)
+  (names caml_c_stubs)
+ )
+ (modules stubs_c))
 
 (executable
  (name bench)
  (modules bench)
- (libraries stubs core_bench core_unix.command_unix))
+ (libraries stubs_rust stubs_c core_bench core_unix.command_unix))
