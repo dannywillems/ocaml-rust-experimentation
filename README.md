@@ -16,16 +16,23 @@ dune exec ./src/bench.exe -- -q 2
 Output example (lscpu -> 13th Gen Intel(R) Core(TM) i9-13900K)
 
 ```
-Estimated testing time 6s (3 benchmarks x 2s). Change using '-quota'.
-┌─────────────────────────┬──────────┬────────────┐
-│ Name                    │ Time/Run │ Percentage │
-├─────────────────────────┼──────────┼────────────┤
-│ Bench Rust unit         │  13.72ns │     40.69% │
-│ Bench C unit            │   4.69ns │     13.92% │
-│ Bench Rust add integers │  33.73ns │    100.00% │
-└─────────────────────────┴──────────┴────────────┘
-
+Estimated testing time 16s (8 benchmarks x 2s). Change using '-quota'.
+┌────────────────────────────────┬──────────┬────────────┐
+│ Name                           │ Time/Run │ Percentage │
+├────────────────────────────────┼──────────┼────────────┤
+│ Bench C unit                   │   4.69ns │     11.17% │
+│ Bench c add integers           │   4.37ns │     10.40% │
+│ Bench C two integers unit      │   4.39ns │     10.46% │
+│ Bench C three integers unit    │   4.71ns │     11.22% │
+│ Bench Rust unit                │  13.78ns │     32.81% │
+│ Bench Rust add integers        │  34.36ns │     81.81% │
+│ Bench Rust two integers unit   │  32.29ns │     76.89% │
+│ Bench Rust three integers unit │  41.99ns │    100.00% │
+└────────────────────────────────┴──────────┴────────────┘
 ```
+
+Conclusions:
+- Rust bindings seem to have a linear (in the argument number) cost overhead
 
 ### See generated code
 
