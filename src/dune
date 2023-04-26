@@ -11,10 +11,16 @@
     (run cp %{project_root}/target/release/libstubs_rust.a libstubs_rust.a)
     (with-accepted-exit-codes
      (or 0 1)
-     (run cp %{project_root}/target/release/libstubs_rust.so dllstubs_rust.so))
+     (run
+      cp
+      %{project_root}/target/release/libstubs_rust.so
+      dllstubs_rust.so))
     (with-accepted-exit-codes
      (or 0 1)
-     (run cp %{project_root}/target/release/libstubs_rust.dylib dllstubs_rust.so))))))
+     (run
+      cp
+      %{project_root}/target/release/libstubs_rust.dylib
+      dllstubs_rust.so))))))
 
 (library
  (name stubs_rust)
@@ -27,8 +33,7 @@
  (name stubs_c)
  (foreign_stubs
   (language c)
-  (names caml_c_stubs)
- )
+  (names caml_c_stubs))
  (modules stubs_c))
 
 (executable
