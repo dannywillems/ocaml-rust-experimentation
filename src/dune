@@ -1,0 +1,29 @@
+(rule
+ (deps
+  (source_tree libstubs))
+ (targets libstubs.a dllstubs.so)
+ (action
+  (no-infer
+   (progn
+    ;; This will disappear in the future as it would be moved to a different
+    ;; OPAM package with vendored libraries
+    (run cargo build --release --target-dir %{project_root}/target)
+    (run cp %{project_root}/target/release/libstubs.a libstubs.a)
+    (with-accepted-exit-codes
+     (or 0 1)
+     (run cp %{project_root}/target/release/libstubs.so dllstubs.so))
+    (with-accepted-exit-codes
+     (or 0 1)
+     (run cp %{project_root}/target/release/libstubs.dylib dllstubs.so))))))
+
+(library
+ (name stubs)
+ (foreign_archives stubs)
+ (modules stubs)
+ (c_library_flags
+  (:standard -lpthread -lc -lm)))
+
+(executable
+ (name bench)
+ (modules bench)
+ (libraries stubs core_bench core_unix.command_unix))
