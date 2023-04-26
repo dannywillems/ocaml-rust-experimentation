@@ -70,3 +70,5 @@ pub extern "C" fn caml_rust_add_int_stubs(x: ocaml::Raw, y: ocaml::Raw) -> ocaml
     }
 }
 ```
+
+It seems ocaml-rs uses ocaml-boxroot, which is a new type of root registration, see https://gitlab.com/ocaml-rust/ocaml-boxroot.
