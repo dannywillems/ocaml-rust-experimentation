@@ -40,3 +40,8 @@
  (name bench)
  (modules bench)
  (libraries stubs_rust stubs_c core_bench core_unix.command_unix))
+
+(executable
+ (name main)
+ (modules main)
+ (libraries stubs_rust stubs_c core_bench core_unix.command_unix))

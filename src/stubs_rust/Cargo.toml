@@ -3,6 +3,8 @@ name = "stubs_rust"
 version = "0.1.0"
 authors = ["Danny Willems <be.danny.willems@gmail.com>"]
 edition = "2021"
+licence = "Apache-2.0"
+description = "Stubs Rust for ocaml-rust-experimentation repo"
 
 [lib]
 crate-type = ["staticlib", "cdylib"]
