@@ -10,4 +10,4 @@ description = "Stubs Rust for ocaml-rust-experimentation repo"
 crate-type = ["staticlib", "cdylib"]
 
 [dependencies]
-ocaml = {version = "*"}
+ocaml = {version = "0.22.4"}
