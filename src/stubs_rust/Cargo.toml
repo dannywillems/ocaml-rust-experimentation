@@ -1,6 +1,6 @@
 [package]
 name = "stubs_rust"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Danny Willems <be.danny.willems@gmail.com>"]
 edition = "2021"
 license = "Apache-2.0"
